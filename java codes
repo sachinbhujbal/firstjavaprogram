@@ -1,1 +1,63 @@
 
+package com.company;
+
+import java.util.Scanner;
+
+interface AfterSale{
+    abstract double chargeOnDelivery(double product,double x);
+    public double discount(double s);
+}
+abstract class RegularCustomer implements AfterSale{
+    @Override
+   public abstract double chargeOnDelivery(double product,double x);
+    public abstract double discount(double s);
+}
+abstract class PrivilegedCustomer implements AfterSale{
+   @Override
+  public   abstract double chargeOnDelivery(double product,double x);
+
+      @Override
+      public abstract double discount(double s);
+  }
+class Customer extends PrivilegedCustomer implements AfterSale{
+    @Override
+    public double chargeOnDelivery(double product,double x){
+        double charge=0.07;
+        double final_charge=charge*(product-x);
+        return final_charge;
+    }
+    public double discount(double s){
+        double actual_dis=s/100;
+        return actual_dis;
+    }
+    public double calculatePurchaseAmount(double actual_dis,double purchase_amt){
+        double final_discount=purchase_amt*actual_dis;
+       return final_discount;
+    }
+
+}
+public class Online_shopping {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        Customer c=new Customer();
+        System.out.println("The discount is only for PrivilegedCustomer sorry!!!");
+        System.out.println("Enter the price of product");
+        double product=sc.nextDouble();
+        System.out.println("Enter discount");
+        double dis=sc.nextDouble();
+        c.discount(dis);
+
+        double x=c.calculatePurchaseAmount(c.discount(dis), product);
+        c.chargeOnDelivery(product,x);
+        double charge=c.chargeOnDelivery(product,x);
+        System.out.println("your product discount is:"+x);
+        System.out.println("You have to paid:"+(product-x));
+        System.out.println("ID of customer is:"+c);
+//        System.out.println("The delivery charge may applied :"+c.chargeOnDelivery(product));
+        double f=c.chargeOnDelivery(product,x);
+        System.out.println("Note that the delivery charge is on the finalized discounted price of the product!!!!");
+        System.out.println("the delivery charge is:"+f);
+
+
+    }
+}
