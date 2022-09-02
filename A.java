@@ -1,20 +1,30 @@
-package com.company;
+package TypeCasting;
 
-public class access_specifier {
-    public void display(){
-        System.out.println("Hi I am public");
-    }
-    private void display1(){
-        System.out.println("Hi i am private");
-    }
-    protected void display2(){
-        System.out.println("Hi, i am protected");
-    }
-    public static void main(String[] args) {
-    access_specifier obj=new access_specifier();
-    obj.display();
-    obj.display1();
-    obj.display2();
-    }
+public class A {
+	// to convert data type from one to another
+	
+	public static void main(String[] args) {
+		int x = 10;
+		double y = x; //implicit type casting
+		// Widening
+		
+		
+		
+		double z=12.5;
+		int c = (int) z; // explicit type casting
+		//narrowing
+		
+		// not primitive type casting
+//		1. Upcasting
+//		2. downcasting 
+		
+		Person p = new Teacher(); // upcasting
+		p.display();
+		
+		Teacher t = (Teacher) new Person();
+		t.display(); //compile error
+		
+		System.out.println(y +" " + c );
+		
+	}
 }
-
